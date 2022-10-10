@@ -19,7 +19,7 @@ class VideoFactory extends Factory
         return [
             'title' => fake()->sentence(3),
             'description' => fake()->paragraph(5),
-            'url_img' => fake()->imageUrl(640, 480, 'animals', true),
+            'url_img' => "https://source.unsplash.com/640x480/?person?/1",
             'nationality' => fake()->country(),
             'year_created' => fake()->year(),
             'actor' => fake()->name(),

@@ -15,6 +15,7 @@ class VideoController extends Controller
     public function index()
     {
         $videos = Video::get();
+        return view('pages.home', compact('videos'));
     }
 
     /**
