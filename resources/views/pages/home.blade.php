@@ -11,7 +11,7 @@
 						@endforelse
 				</div>
 				<div class="pt-10">
-						{{-- {{ $posts->links('pagination::tailwind') }} --}}
+						{{ $videos->links('pagination::tailwind') }}
 				</div>
 		</div>
 </x-main-layout>
