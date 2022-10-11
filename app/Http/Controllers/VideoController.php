@@ -17,7 +17,7 @@ class VideoController extends Controller
      */
     public function index()
     {
-        $videos = Video::orderBy('updated_at', 'desc')->paginate(10);
+        $videos = Video::orderBy('updated_at', 'desc')->paginate(8);
         return view('pages.home', compact('videos'));
     }
 
@@ -44,7 +44,7 @@ class VideoController extends Controller
         $request->validate([
             'title' => 'required|min:5|max:180|string|unique:videos,title',
             'description' => 'required|min:20|max:350|string',
-            'url_img' => 'required|mimes:png,jpg,jpeg|max:2000',
+            'url_img' => 'required|image|mimes:png,jpg,jpeg,jfif|max:2000',
             'nationality' => 'required|min:5|max:180|string',
             'actor' => 'required|min:5|max:180|string',
             'year_created' => 'required|min:2|max:6|string'
@@ -105,7 +105,7 @@ class VideoController extends Controller
         $request->validate([
             'title' => 'required|min:5|max:180|string',
             'description' => 'required|min:20|max:350|string',
-            'url_img' => 'required|image|mimes:png,jpg,jpeg|max:2000',
+            'url_img' => 'required|image|mimes:png,jpg,jpeg,jfif|max:2000',
             'nationality' => 'required|min:5|max:180|string',
             'actor' => 'required|min:5|max:180|string',
             'year_created' => 'required|min:2|max:6|string'

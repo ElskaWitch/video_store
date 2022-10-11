@@ -2,7 +2,7 @@
 		<div class="container">
 				<h2 class="text-center text-4xl py-10 font-semibold text-[#6d5ba1]">{{ $video->title }}</h2>
 				<div class="grid place-items-center">
-						<img alt="{{ $video->title }}" class="rounded-xl w-96 " src="{{ $video->url_img }}">
+						<img alt="{{ $video->title }}" class="rounded-xl w-96 " src="{{ asset('storage/' . $video->url_img) }}">
 						<p class="text-center px-96 py-10">{!! nl2br(e($video->description)) !!}</p>
 						<p>{!! nl2br(e($video->nationality)) !!}</p>
 						<p>{!! nl2br(e($video->year_created)) !!}</p>

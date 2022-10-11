@@ -2,7 +2,7 @@
 
 <div class="">
 		<div class="grid place-content-center">
-				<img alt="{{ $title }}" class="rounded-xl w-64 " src="{{ $url_img }}">
+				<img alt="{{ $title }}" class="rounded-xl w-64 " src="{{ asset('storage/' . $url_img) }}">
 		</div>
 		<div class="card-body p-5">
 				<h2 class="card-title text-center text-xl">{{ $title }}</h2>
