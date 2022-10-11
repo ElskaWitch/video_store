@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Video;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
+use App\Http\Requests\UpdateVideoRequest;
 
 class VideoController extends Controller
 {
@@ -68,9 +70,35 @@ class VideoController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(UpdateVideoRequest $request, Video $video)
     {
-        //
+        if ($request->hasFile('url_img')) {
+            Storage::delete($video->url_img);
+            $video->url_img = $request->file('url_img')->store('videos');
+        }
+
+        $request->validate([
+            'title' => 'required|min:5|max:180|string',
+            'description' => 'required|min:20|max:350|string',
+            'url_img' => 'required|image|mimes:png,jpg,jpeg|max:2000',
+            'nationality' => 'required|min:5|max:180|string',
+            'actor ' => 'required|min:5|max:180|string',
+            'year_created' => 'required|min:2|max:6|string'
+        ]);
+
+        $video->update([
+            'title' => $request->title,
+            'description' => $request->description,
+            'url_img' => $video->url_img,
+            'nationality' => $video->nationality,
+            'actor' => $video->actor,
+            'year_created' => $video->year_created,
+            'updated_at' => now()
+        ]);
+
+        return redirect()
+            ->route('home')
+            ->with('status', 'Le post a bien été modifié.');
     }
 
     /**

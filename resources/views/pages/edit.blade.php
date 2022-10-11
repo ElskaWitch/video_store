@@ -1,10 +1,10 @@
-<x-main-layout title="Create">
+<x-main-layout title="Edit">
 		<div class="container">
 				<h2 class="text-center text-4xl py-10 font-semibold text-[#6d5ba1]">Modifier post</h2>
 				<form action="{{ route('videos.update', $video->id) }}" enctype="multipart/form-data" method="POST">
 						@csrf
 						@method('PUT')
-						<div class="px-96 ">
+						<div class="px-96 space-y-5">
 								{{-- title --}}
 								<input class="block w-full rounded-xl border-gray-400" name="title" placeholder="Titre du post"
 										type="text" value="{{ old('title', $video->title) }}">

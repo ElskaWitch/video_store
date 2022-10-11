@@ -8,13 +8,15 @@
 						<p>{!! nl2br(e($video->year_created)) !!}</p>
 						<p>{!! nl2br(e($video->actor)) !!}</p>
 				</div>
-				<div class="pt-6 flex justify-center space-x-5">
-						<div>
-								<x-btn-delete :video="$video" />
+				@auth
+						<div class="pt-6 flex justify-center space-x-5">
+								<div>
+										<x-btn-delete :video="$video" />
+								</div>
+								<div>
+										<a class="btn btn-success" href="{{ $video->id }}/edit">Modifier</a>
+								</div>
 						</div>
-						<div>
-								<a class="btn btn-success" href="{{ $video->id }}/edit">Modifier</a>
-						</div>
-				</div>
+				@endauth
 		</div>
 </x-main-layout>

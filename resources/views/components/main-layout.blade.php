@@ -23,12 +23,13 @@
 </head>
 
 <body>
+		@include('partials.navbar._nav')
 		<div class="px-16 py-7">
-				{{-- @include('partials._session') --}}
+				@include('partials._session')
 				{{ $slot }}
 		</div>
+		@include('partials.footer._footer')
 
-		{{-- Js se mets tjrs avant la fin de body --}}
 		@vite('resources/js/app.js')
 </body>
 
