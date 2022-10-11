@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Video;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
+use App\Http\Requests\StoreVideoRequest;
 use App\Http\Requests\UpdateVideoRequest;
 
 class VideoController extends Controller
@@ -27,7 +28,7 @@ class VideoController extends Controller
      */
     public function create()
     {
-        //
+        return view('pages.create');
     }
 
     /**
@@ -36,9 +37,33 @@ class VideoController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreVideoRequest $request)
     {
-        //
+        // dd($request->all());
+
+        $request->validate([
+            'title' => 'required|min:5|max:180|string|unique:videos,title',
+            'description' => 'required|min:20|max:350|string',
+            'url_img' => 'required|mimes:png,jpg,jpeg|max:2000',
+            'nationality' => 'required|min:5|max:180|string',
+            'actor' => 'required|min:5|max:180|string',
+            'year_created' => 'required|min:2|max:6|string'
+        ]);
+
+        $validateImg = $request->file('url_img')->store('videos');
+
+        Video::create([
+            'title' => $request->title,
+            'description' => $request->description,
+            'url_img' => $validateImg,
+            'nationality' => $request->nationality,
+            'actor' => $request->actor,
+            'year_created' => $request->year_created,
+            'created_at' => now()
+        ]);
+        return redirect()
+            ->route('home')
+            ->with('status', 'Le post a bien été ajouté');
     }
 
     /**
@@ -82,7 +107,7 @@ class VideoController extends Controller
             'description' => 'required|min:20|max:350|string',
             'url_img' => 'required|image|mimes:png,jpg,jpeg|max:2000',
             'nationality' => 'required|min:5|max:180|string',
-            'actor ' => 'required|min:5|max:180|string',
+            'actor' => 'required|min:5|max:180|string',
             'year_created' => 'required|min:2|max:6|string'
         ]);
 

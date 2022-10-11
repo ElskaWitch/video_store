@@ -17,7 +17,7 @@ $styleLink = 'bg-black px-3 py-1 rounded-xl hover:bg-blue-200 hover:text-black';
 				@auth
 						<div class=" space-x-4 flex items-center">
 								<div class="{{ $styleLink }}">
-										<a href="dashboard">Dashboard</a>
+										<a href="{{ route('dashboard') }}">Dashboard</a>
 								</div>
 								<x-btn-logout />
 						</div>
