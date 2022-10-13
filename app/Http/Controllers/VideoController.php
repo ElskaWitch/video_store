@@ -39,7 +39,7 @@ class VideoController extends Controller
      */
     public function store(StoreVideoRequest $request)
     {
-        // dd($request->all());
+        // dd($request->all()); 
 
         $request->validate([
             'title' => 'required|min:5|max:180|string|unique:videos,title',
