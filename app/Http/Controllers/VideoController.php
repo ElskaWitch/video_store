@@ -115,9 +115,9 @@ class VideoController extends Controller
             'title' => $request->title,
             'description' => $request->description,
             'url_img' => $video->url_img,
-            'nationality' => $video->nationality,
-            'actor' => $video->actor,
-            'year_created' => $video->year_created,
+            'nationality' => $request->nationality,
+            'actor' => $request->actor,
+            'year_created' => $request->year_created,
             'updated_at' => now()
         ]);
 
