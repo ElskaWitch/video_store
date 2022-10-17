@@ -122,7 +122,7 @@ class VideoController extends Controller
         ]);
 
         return redirect()
-            ->route('home')
+            ->route('videos.show', $video->id)
             ->with('status', 'Le post a bien été modifié.');
     }
 
