@@ -68,9 +68,9 @@ class CategoryController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(ListCategories $category)
     {
-        //
+        return view('pages.edit-category', compact('category'));
     }
 
     /**
@@ -80,9 +80,20 @@ class CategoryController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, ListCategories $category)
     {
-        //
+        $request->validate([
+            'name' => 'required|max:150|string',
+        ]);
+
+        $category->update([
+            'name' => $request->name,
+            'updated_at' => now(),
+        ]);
+
+        return redirect()
+            ->route('categories.index', $category->id)
+            ->with('status', 'La category a bien été modifié.');
     }
 
     /**
@@ -91,8 +102,11 @@ class CategoryController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(ListCategories $category)
     {
-        //
+        $category->delete();
+        return redirect()
+            ->route('categories.index')
+            ->with('status', "La categorie a bien été supprimé");
     }
 }

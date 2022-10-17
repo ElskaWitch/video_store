@@ -1,8 +1,8 @@
-@props(['video'])
+@props(['item', 'routeItem'])
 
 <div class="">
-		<form action="{{ route('videos.destroy', $video->id) }}" method="POST"
-				onsubmit="return confirm('Es-tu sûr de vouloir supprimer ce post ?')">
+		<form action="{{ route($routeItem, $item->id) }}" method="POST"
+				onsubmit="return confirm('Es-tu sûr de vouloir supprimer?')">
 				@csrf
 				@method('DELETE')
 				<button class="btn btn-error">Supprimer</button>

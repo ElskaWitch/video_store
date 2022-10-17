@@ -14,7 +14,15 @@
 						</div>
 				</form>
 				@forelse ($categories as $category)
-						<p> {{ $category->name }} </p>
+						<p class="text-center pt-5 text-lg font-semibold pb-2"> {{ $category->name }} </p>
+						<div class="pb-6 flex justify-center space-x-5">
+								<div>
+										<a class="btn btn-success" href="{{ route('categories.edit', $category->id) }}">Modifier</a>
+								</div>
+								<div>
+										<x-btn-delete :item="$category" routeItem="categories.destroy" />
+								</div>
+						</div>
 				@empty
 						<p class="text-xl text-[#0e0037]">Pas de categories actuellement</p>
 				@endforelse
