@@ -15,6 +15,7 @@ $styleLink = 'bg-black px-3 py-1 rounded-xl hover:bg-blue-200 hover:text-black t
 				<div class="py-10 text-center space-x-5 ">
 						<a class=" {{ $styleLink }} " href=" {{ route('videos.create') }} ">New post</a>
 						<a class="{{ $styleLink }} " href="/">Liste des post</a>
+						<a class="{{ $styleLink }} " href="{{ route('categories.index') }}">Les categories</a>
 				</div>
 		</div>
 </x-main-layout>

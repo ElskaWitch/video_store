@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\ListCategories;
 
 class CategoryController extends Controller
 {
@@ -13,7 +14,8 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        //
+        $categories = ListCategories::orderBy('created_at', 'desc')->get();
+        return view('pages.category', compact('categories'));
     }
 
     /**
@@ -34,7 +36,19 @@ class CategoryController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        // validate form
+        $request->validate([
+            'name' => 'required|max:150|string',
+        ]);
+
+        // save to BDD
+        ListCategories::create([
+            'name' => $request->name,
+            'created_at' => now()
+        ]);
+
+        // redirect
+        return back()->with('status', 'Category add success!');
     }
 
     /**
