@@ -20,7 +20,6 @@
 								{{-- year --}}
 								<input class="block w-full rounded-xl border-gray-400" name="year_created" placeholder="year created"
 										type="text" value="{{ old('year_created', $video->year_created) }}">
-										{{-- type="date" value="{{old('year_created', $video->year_created->toDateString())}}" pour avoir un calendrier --}}
 								<x-error-msg name="year_created" />
 								{{-- actor --}}
 								<input class="block w-full rounded-xl border-gray-400" name="actor" placeholder="Actor" type="text"
